@@ -1,0 +1,242 @@
+***** Test-01: Encoding (DNS Query) ******
+query for facebook.com A
+Your query
+00000000  00 00 00 01 00 00 00 00  00 00 08 66 61 63 65 62  |...........faceb|
+00000010  6f 6f 6b 03 63 6f 6d 00  00 01 00 01              |ook.com.....|
+0000001c
+For Test 1, the query could be like
+00000000  00 00 00 01 00 00 00 00  00 00 08 66 61 63 65 62  |...........faceb|
+00000010  6f 6f 6b 03 63 6f 6d 00  00 01 00 01              |ook.com.....|
+0000001c
+or
+00000000  01 00 00 01 00 00 00 00  00 00 08 66 61 63 65 62  |...........faceb|
+00000010  6f 6f 6b 03 63 6f 6d 00  00 01 00 01              |ook.com.....|
+0000001c
+***** Test-02: Encoding (DNS Query) ******
+query for subdomain.example.com AAAA
+Your query
+00000000  00 00 00 01 00 00 00 00  00 00 09 73 75 62 64 6f  |...........subdo|
+00000010  6d 61 69 6e 07 65 78 61  6d 70 6c 65 03 63 6f 6d  |main.example.com|
+00000020  00 00 1c 00 01                                    |.....|
+00000025
+For Test 2, the query could be like
+00000000  00 00 00 01 00 00 00 00  00 00 09 73 75 62 64 6f  |...........subdo|
+00000010  6d 61 69 6e 07 65 78 61  6d 70 6c 65 03 63 6f 6d  |main.example.com|
+00000020  00 00 1c 00 01                                    |.....|
+00000025
+or
+00000000  01 00 00 01 00 00 00 00  00 00 09 73 75 62 64 6f  |...........subdo|
+00000010  6d 61 69 6e 07 65 78 61  6d 70 6c 65 03 63 6f 6d  |main.example.com|
+00000020  00 00 1c 00 01                                    |.....|
+00000025
+ Total Score = 5/5
+***** Test-03: Decoding (DNS Response) ******
+lookup www.cs.ubc.ca | java -jar DNSLookupService.jar 199.7.83.42 -p1
+Response obtained using your code
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+www.cs.ubc.ca
+e5b90000000100000000000003777777026373037562630263610000010001
+message after 
+-27 -71 0 0 0 1 0 0 0 0 0 0 3 119 119 119 2 99 115 3 117 98 99 2 99 97 0 0 1 0 1 
+
+
+Received: 284 bytes
+-27 -71 -128 0 0 1 0 0 0 4 0 8 3 119 119 119 2 99 115 3 117 98 99 2 99 97 0 0 1 0 1 -64 23 0 2 0 1 0 2 -93 0 0 15 1 99 10 99 97 45 115 101 114 118 101 114 115 -64 23 -64 23 0 2 0 1 0 2 -93 0 0 4 1 106 -64 45 -64 23 0 2 0 1 0 2 -93 0 0 4 1 120 -64 45 -64 23 0 2 0 1 0 2 -93 0 0 6 3 97 110 121 -64 45 -64 43 0 1 0 1 0 2 -93 0 0 4 -71 -97 -60 2 -64 70 0 1 0 1 0 2 -93 0 0 4 -58 -74 -89 1 -64 86 0 1 0 1 0 2 -93 0 0 4 -57 -3 -6 68 -64 102 0 1 0 1 0 2 -93 0 0 4 -57 4 -112 2 -64 43 0 28 0 1 0 2 -93 0 0 16 38 32 1 10 -128 83 0 0 0 0 0 0 0 0 0 2 -64 70 0 28 0 1 0 2 -93 0 0 16 32 1 5 0 0 -125 0 0 0 0 0 0 0 0 0 1 -64 86 0 28 0 1 0 2 -93 0 0 16 38 32 1 10 -128 -70 0 0 0 0 0 0 0 0 0 104 -64 102 0 28 0 1 0 2 -93 0 0 16 32 1 5 0 0 -89 0 0 0 0 0 0 0 0 0 2 
+
+null
+www.cs.ubc.ca                  A     -1       0.0.0.0
+Goodbye!
+Response that we expected
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+
+
+Query ID     61880 www.cs.ubc.ca  A --> 199.7.83.42
+Response ID: 61880 Authoritative = false
+  Answers (0)
+  Nameservers (4)
+       ca                             172800     NS   c.ca-servers.ca
+       ca                             172800     NS   j.ca-servers.ca
+       ca                             172800     NS   x.ca-servers.ca
+       ca                             172800     NS   any.ca-servers.ca
+  Additional Information (8)
+       c.ca-servers.ca                172800     A    185.159.196.2
+       j.ca-servers.ca                172800     A    198.182.167.1
+       x.ca-servers.ca                172800     A    199.253.250.68
+       any.ca-servers.ca              172800     A    199.4.144.2
+       c.ca-servers.ca                172800     AAAA 2620:10a:8053:0:0:0:0:2
+       j.ca-servers.ca                172800     AAAA 2001:500:83:0:0:0:0:1
+       x.ca-servers.ca                172800     AAAA 2620:10a:80ba:0:0:0:0:68
+       any.ca-servers.ca              172800     AAAA 2001:500:a7:0:0:0:0:2
+www.cs.ubc.ca                  A     -1       0.0.0.0
+Goodbye!
+***** Test-04: Decoding (DNS Response) ******
+lookup www.stanford.edu | java -jar DNSLookupService.jar 199.7.83.42 -p1
+Response obtained using your code
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+www.stanford.edu
+915e0000000100000000000003777777087374616e666f7264036564750000010001
+message after 
+-111 94 0 0 0 1 0 0 0 0 0 0 3 119 119 119 8 115 116 97 110 102 111 114 100 3 101 100 117 0 0 1 0 1 
+
+
+Received: 493 bytes
+-111 94 -128 0 0 1 0 0 0 13 0 14 3 119 119 119 8 115 116 97 110 102 111 114 100 3 101 100 117 0 0 1 0 1 -64 25 0 2 0 1 0 2 -93 0 0 19 1 97 11 101 100 117 45 115 101 114 118 101 114 115 3 110 101 116 0 -64 25 0 2 0 1 0 2 -93 0 0 4 1 98 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 99 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 100 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 101 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 102 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 103 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 104 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 105 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 106 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 107 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 108 -64 48 -64 25 0 2 0 1 0 2 -93 0 0 4 1 109 -64 48 -64 46 0 1 0 1 0 2 -93 0 0 4 -64 5 6 30 -64 77 0 1 0 1 0 2 -93 0 0 4 -64 33 14 30 -64 93 0 1 0 1 0 2 -93 0 0 4 -64 26 92 30 -64 109 0 1 0 1 0 2 -93 0 0 4 -64 31 80 30 -64 125 0 1 0 1 0 2 -93 0 0 4 -64 12 94 30 -64 -115 0 1 0 1 0 2 -93 0 0 4 -64 35 51 30 -64 -99 0 1 0 1 0 2 -93 0 0 4 -64 42 93 30 -64 -83 0 1 0 1 0 2 -93 0 0 4 -64 54 112 30 -64 -67 0 1 0 1 0 2 -93 0 0 4 -64 43 -84 30 -64 -51 0 1 0 1 0 2 -93 0 0 4 -64 48 79 30 -64 -35 0 1 0 1 0 2 -93 0 0 4 -64 52 -78 30 -64 -19 0 1 0 1 0 2 -93 0 0 4 -64 41 -94 30 -64 -3 0 1 0 1 0 2 -93 0 0 4 -64 55 83 30 -64 46 0 28 0 1 0 2 -93 0 0 16 32 1 5 3 -88 62 0 0 0 0 0 0 0 2 0 48 
+
+null
+www.stanford.edu               A     -1       0.0.0.0
+Goodbye!
+Response that we expected
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+
+
+Query ID     30466 www.stanford.edu  A --> 199.7.83.42
+Response ID: 30466 Authoritative = false
+  Answers (0)
+  Nameservers (13)
+       edu                            172800     NS   a.edu-servers.net
+       edu                            172800     NS   b.edu-servers.net
+       edu                            172800     NS   c.edu-servers.net
+       edu                            172800     NS   d.edu-servers.net
+       edu                            172800     NS   e.edu-servers.net
+       edu                            172800     NS   f.edu-servers.net
+       edu                            172800     NS   g.edu-servers.net
+       edu                            172800     NS   h.edu-servers.net
+       edu                            172800     NS   i.edu-servers.net
+       edu                            172800     NS   j.edu-servers.net
+       edu                            172800     NS   k.edu-servers.net
+       edu                            172800     NS   l.edu-servers.net
+       edu                            172800     NS   m.edu-servers.net
+  Additional Information (14)
+       a.edu-servers.net              172800     A    192.5.6.30
+       b.edu-servers.net              172800     A    192.33.14.30
+       c.edu-servers.net              172800     A    192.26.92.30
+       d.edu-servers.net              172800     A    192.31.80.30
+       e.edu-servers.net              172800     A    192.12.94.30
+       f.edu-servers.net              172800     A    192.35.51.30
+       g.edu-servers.net              172800     A    192.42.93.30
+       h.edu-servers.net              172800     A    192.54.112.30
+       i.edu-servers.net              172800     A    192.43.172.30
+       j.edu-servers.net              172800     A    192.48.79.30
+       k.edu-servers.net              172800     A    192.52.178.30
+       l.edu-servers.net              172800     A    192.41.162.30
+       m.edu-servers.net              172800     A    192.55.83.30
+       a.edu-servers.net              172800     AAAA 2001:503:a83e:0:0:0:2:30
+www.stanford.edu               A     -1       0.0.0.0
+Goodbye!
+***** Test-05: Decoding (DNS Response) ******
+lookup site5.com | java -jar DNSLookupService.jar 199.7.83.42 -p1
+Response obtained using your code
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+site5.com
+e3870000000100000000000005736974653503636f6d0000010001
+message after 
+-29 -121 0 0 0 1 0 0 0 0 0 0 5 115 105 116 101 53 3 99 111 109 0 0 1 0 1 
+
+
+Received: 487 bytes
+-29 -121 -128 0 0 1 0 0 0 13 0 14 5 115 105 116 101 53 3 99 111 109 0 0 1 0 1 -64 18 0 2 0 1 0 2 -93 0 0 20 1 97 12 103 116 108 100 45 115 101 114 118 101 114 115 3 110 101 116 0 -64 18 0 2 0 1 0 2 -93 0 0 4 1 98 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 99 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 100 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 101 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 102 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 103 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 104 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 105 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 106 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 107 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 108 -64 41 -64 18 0 2 0 1 0 2 -93 0 0 4 1 109 -64 41 -64 39 0 1 0 1 0 2 -93 0 0 4 -64 5 6 30 -64 71 0 1 0 1 0 2 -93 0 0 4 -64 33 14 30 -64 87 0 1 0 1 0 2 -93 0 0 4 -64 26 92 30 -64 103 0 1 0 1 0 2 -93 0 0 4 -64 31 80 30 -64 119 0 1 0 1 0 2 -93 0 0 4 -64 12 94 30 -64 -121 0 1 0 1 0 2 -93 0 0 4 -64 35 51 30 -64 -105 0 1 0 1 0 2 -93 0 0 4 -64 42 93 30 -64 -89 0 1 0 1 0 2 -93 0 0 4 -64 54 112 30 -64 -73 0 1 0 1 0 2 -93 0 0 4 -64 43 -84 30 -64 -57 0 1 0 1 0 2 -93 0 0 4 -64 48 79 30 -64 -41 0 1 0 1 0 2 -93 0 0 4 -64 52 -78 30 -64 -25 0 1 0 1 0 2 -93 0 0 4 -64 41 -94 30 -64 -9 0 1 0 1 0 2 -93 0 0 4 -64 55 83 30 -64 39 0 28 0 1 0 2 -93 0 0 16 32 1 5 3 -88 62 0 0 0 0 0 0 0 2 0 48 
+
+null
+site5.com                      A     -1       0.0.0.0
+Goodbye!
+Response that we expected
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+
+
+Query ID     3039 site5.com  A --> 199.7.83.42
+Response ID: 3039 Authoritative = false
+  Answers (0)
+  Nameservers (13)
+       com                            172800     NS   a.gtld-servers.net
+       com                            172800     NS   b.gtld-servers.net
+       com                            172800     NS   c.gtld-servers.net
+       com                            172800     NS   d.gtld-servers.net
+       com                            172800     NS   e.gtld-servers.net
+       com                            172800     NS   f.gtld-servers.net
+       com                            172800     NS   g.gtld-servers.net
+       com                            172800     NS   h.gtld-servers.net
+       com                            172800     NS   i.gtld-servers.net
+       com                            172800     NS   j.gtld-servers.net
+       com                            172800     NS   k.gtld-servers.net
+       com                            172800     NS   l.gtld-servers.net
+       com                            172800     NS   m.gtld-servers.net
+  Additional Information (14)
+       a.gtld-servers.net             172800     A    192.5.6.30
+       b.gtld-servers.net             172800     A    192.33.14.30
+       c.gtld-servers.net             172800     A    192.26.92.30
+       d.gtld-servers.net             172800     A    192.31.80.30
+       e.gtld-servers.net             172800     A    192.12.94.30
+       f.gtld-servers.net             172800     A    192.35.51.30
+       g.gtld-servers.net             172800     A    192.42.93.30
+       h.gtld-servers.net             172800     A    192.54.112.30
+       i.gtld-servers.net             172800     A    192.43.172.30
+       j.gtld-servers.net             172800     A    192.48.79.30
+       k.gtld-servers.net             172800     A    192.52.178.30
+       l.gtld-servers.net             172800     A    192.41.162.30
+       m.gtld-servers.net             172800     A    192.55.83.30
+       a.gtld-servers.net             172800     AAAA 2001:503:a83e:0:0:0:2:30
+site5.com                      A     -1       0.0.0.0
+Goodbye!
+***** Test-06: Decoding (DNS Response) ******
+lookup bbc.com | java -jar DNSLookupService.jar 199.7.83.42 -p1
+Response obtained using your code
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+www.bbc.com
+f55800000001000000000000037777770362626303636f6d0000010001
+message after 
+-11 88 0 0 0 1 0 0 0 0 0 0 3 119 119 119 3 98 98 99 3 99 111 109 0 0 1 0 1 
+
+
+Received: 489 bytes
+-11 88 -128 0 0 1 0 0 0 13 0 14 3 119 119 119 3 98 98 99 3 99 111 109 0 0 1 0 1 -64 20 0 2 0 1 0 2 -93 0 0 20 1 97 12 103 116 108 100 45 115 101 114 118 101 114 115 3 110 101 116 0 -64 20 0 2 0 1 0 2 -93 0 0 4 1 98 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 99 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 100 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 101 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 102 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 103 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 104 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 105 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 106 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 107 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 108 -64 43 -64 20 0 2 0 1 0 2 -93 0 0 4 1 109 -64 43 -64 41 0 1 0 1 0 2 -93 0 0 4 -64 5 6 30 -64 73 0 1 0 1 0 2 -93 0 0 4 -64 33 14 30 -64 89 0 1 0 1 0 2 -93 0 0 4 -64 26 92 30 -64 105 0 1 0 1 0 2 -93 0 0 4 -64 31 80 30 -64 121 0 1 0 1 0 2 -93 0 0 4 -64 12 94 30 -64 -119 0 1 0 1 0 2 -93 0 0 4 -64 35 51 30 -64 -103 0 1 0 1 0 2 -93 0 0 4 -64 42 93 30 -64 -87 0 1 0 1 0 2 -93 0 0 4 -64 54 112 30 -64 -71 0 1 0 1 0 2 -93 0 0 4 -64 43 -84 30 -64 -55 0 1 0 1 0 2 -93 0 0 4 -64 48 79 30 -64 -39 0 1 0 1 0 2 -93 0 0 4 -64 52 -78 30 -64 -23 0 1 0 1 0 2 -93 0 0 4 -64 41 -94 30 -64 -7 0 1 0 1 0 2 -93 0 0 4 -64 55 83 30 -64 41 0 28 0 1 0 2 -93 0 0 16 32 1 5 3 -88 62 0 0 0 0 0 0 0 2 0 48 
+
+null
+www.bbc.com                    A     -1       0.0.0.0
+Goodbye!
+Response that we expected
+Root DNS server is: 199.7.83.42
+Verbose tracing is now: ON
+
+
+Query ID     2481 www.bbc.com  A --> 199.7.83.42
+Response ID: 2481 Authoritative = false
+  Answers (0)
+  Nameservers (13)
+       com                            172800     NS   a.gtld-servers.net
+       com                            172800     NS   b.gtld-servers.net
+       com                            172800     NS   c.gtld-servers.net
+       com                            172800     NS   d.gtld-servers.net
+       com                            172800     NS   e.gtld-servers.net
+       com                            172800     NS   f.gtld-servers.net
+       com                            172800     NS   g.gtld-servers.net
+       com                            172800     NS   h.gtld-servers.net
+       com                            172800     NS   i.gtld-servers.net
+       com                            172800     NS   j.gtld-servers.net
+       com                            172800     NS   k.gtld-servers.net
+       com                            172800     NS   l.gtld-servers.net
+       com                            172800     NS   m.gtld-servers.net
+  Additional Information (14)
+       a.gtld-servers.net             172800     A    192.5.6.30
+       b.gtld-servers.net             172800     A    192.33.14.30
+       c.gtld-servers.net             172800     A    192.26.92.30
+       d.gtld-servers.net             172800     A    192.31.80.30
+       e.gtld-servers.net             172800     A    192.12.94.30
+       f.gtld-servers.net             172800     A    192.35.51.30
+       g.gtld-servers.net             172800     A    192.42.93.30
+       h.gtld-servers.net             172800     A    192.54.112.30
+       i.gtld-servers.net             172800     A    192.43.172.30
+       j.gtld-servers.net             172800     A    192.48.79.30
+       k.gtld-servers.net             172800     A    192.52.178.30
+       l.gtld-servers.net             172800     A    192.41.162.30
+       m.gtld-servers.net             172800     A    192.55.83.30
+       a.gtld-servers.net             172800     AAAA 2001:503:a83e:0:0:0:2:30
+www.bbc.com                    A     -1       0.0.0.0
+Goodbye!
+ Total Score = 0/10
